@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:task_gdsc/note_task/note_screan_1.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_gdsc/login_register_task/LoginScrean.dart';
+import 'package:task_gdsc/login_register_task/RegisterScrean.dart';
+import 'package:task_gdsc/shared/Cubite/Cubite.dart';
 
-import 'login_register_task/RegisterScrean.dart';
+import 'BlocObserver.dart';
 
 void main() {
+  Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
 
@@ -13,9 +17,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: NoteScrean_1(),
+    return BlocProvider(
+
+      create: (BuildContext context) => AppCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: RegisterScrean(),
+      ),
     );
   }
 }
